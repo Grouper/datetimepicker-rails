@@ -133,7 +133,8 @@
 
     show: function(e) {
       this.widget.show();
-      this.height = this.component ? this.component.outerHeight() : this.$element.outerHeight();
+      var hasComponent = (this.component && this.component.length > 0);
+      this.height = hasComponent ? this.component.outerHeight() : this.$element.outerHeight();
       this.place();
       this.$element.trigger({
         type: 'show',
@@ -271,8 +272,9 @@
 
     place: function(){
       var position = 'absolute';
-      var offset = this.component ? this.component.offset() : this.$element.offset();
-      this.width = this.component ? this.component.outerWidth() : this.$element.outerWidth();
+      var hasComponent = (this.component && this.component.length > 0);
+      var offset = hasComponent ? this.component.offset() : this.$element.offset();
+      this.width = hasComponent ? this.component.outerWidth() : this.$element.outerWidth();
       offset.top = offset.top + this.height;
 
       var $window = $(window);
